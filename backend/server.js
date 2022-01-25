@@ -1,6 +1,8 @@
 const https = require('https');
 const app = require('./app');
 
+let currentDate = new Date();
+
 const normalizePort = val => {
     const port = parseInt(val, 10);
   
@@ -41,7 +43,7 @@ server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
-  console.log('Listening on ' + bind);
+  console.log('Listening on ' + bind +' at '+ currentDate);
 });
 
 server.listen(port);
