@@ -20,10 +20,11 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.json());//M:26012022 13:51
 //app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //app.use('api/sauce', sauceRoutes);
-//app.use('/api/auth', userRoutes);
+app.use('/api/auth', userRoutes);
 
 
 module.exports =app;   

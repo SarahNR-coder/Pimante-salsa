@@ -1,4 +1,4 @@
-const https = require('https');
+const http = require('http');
 const app = require('./app');
 
 let currentDate = new Date();
@@ -37,7 +37,7 @@ const normalizePort = val => {
     }
   };
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 server.on('error', errorHandler);
 server.on('listening', () => {

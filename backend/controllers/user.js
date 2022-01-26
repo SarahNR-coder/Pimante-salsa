@@ -1,12 +1,13 @@
 const bcrypt = require ('bcrypt');
-const { json } = require('body-parser');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 exports.signup =(req,res,next)=> {
+    console.log("email : '" + req.body.email + "'");
+    console.log("password : " + req.body.password);
     bcrypt.hash(req.body.password, 10)
     .then(hash=>{
-        const user = new User ({
+        const user = new User({
             email: req.body.email,
             password: hash
         })
@@ -18,7 +19,7 @@ exports.signup =(req,res,next)=> {
 }
 
 exports.login = (req,res, next) => {
-    User.findOne({email :req.body.email})
+    User.findOne({email: req.body.email})
     .then(user => {
         if(!user){
             return res.status(401).json({error : 'Utilisateur non trouvé !'});
@@ -37,7 +38,7 @@ exports.login = (req,res, next) => {
                 )
             });
         })
-        .catche(error => res.status(500).json({error}))
+        .catch(error => res.status(500).json({error}))
     })
     .catch(error => res.status(500).json({error}));
 };
